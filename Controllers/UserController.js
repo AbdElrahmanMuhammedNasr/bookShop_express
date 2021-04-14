@@ -4,6 +4,7 @@ const bycrpt = require('bcryptjs')
 
 
 exports.addUser = async (req, res, next) => {
+    console.log('add user')
     const userBody = req.body;
 
     const hashPassword = await bycrpt.hash(userBody.password,10);
@@ -11,8 +12,6 @@ exports.addUser = async (req, res, next) => {
     const user = new User({
         ...userBody,
         password:hashPassword,
-        following: 0,
-        followers: 0,
         created: new Date()
     });
 
